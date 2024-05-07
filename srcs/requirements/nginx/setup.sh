@@ -1,4 +1,7 @@
+#!/bin/sh
+
 #Prerequisites
+apk update
 apk add openssl curl ca-certificates
 
 #Set up the apk repository for stable nginx packages
@@ -20,9 +23,3 @@ mv /tmp/nginx_signing.rsa.pub /etc/apk/keys/
 
 #Install nginx
 apk add nginx@nginx
-
-#Moving configuration file
-#rm /etc/nginx/nginx.conf && mv nginx.conf /etc/nginx/nginx.conf
-
-#Running nginx
-#nginx

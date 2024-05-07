@@ -1,5 +1,0 @@
-services:
-  nginx:
-    build: requirements/nginx
-    ports:
-      - "443:80"
