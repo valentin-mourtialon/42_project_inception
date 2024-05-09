@@ -23,3 +23,13 @@ mv /tmp/nginx_signing.rsa.pub /etc/apk/keys/
 
 #Install nginx
 apk add nginx@nginx
+
+#Generate auto signed certificate
+mkdir /etc/nginx/ssl
+openssl req -x509 -newkey rsa:4096 \
+	-keyout /etc/nginx/ssl/key.pem \
+	-out /etc/nginx/ssl/cert.pem \
+	-sha256 \
+	-days 3650 \
+	-nodes \
+	-subj "/C=FR/ST=Paris/L=Paris/O=42School/OU=IT/CN=vmourtia.42.fr"
