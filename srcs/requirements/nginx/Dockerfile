@@ -1,12 +1,12 @@
 FROM alpine:3.18
 
-COPY ./default.conf /etc/nginx/conf.d/default.conf
+COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
 COPY . src/
 
 WORKDIR src/
 
-RUN sh setup.sh
+RUN sh ./tools/setup.sh
 
 EXPOSE 443
 
-CMD ["nginx", "-g", "deamon off;"]
+CMD ["nginx", "-g", "daemon off;"]
