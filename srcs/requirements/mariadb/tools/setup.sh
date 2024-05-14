@@ -29,6 +29,7 @@ else
 	echo "DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');" >> sys_db
 	# Change the database administrator password
 	echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '${MARIADB_ADMIN_PWD}';" >> sys_db
+
 	# Create the wordpress database and set the admin user.
 	echo "CREATE DATABASE ${WP_DB_NAME};" >> sys_db
 	echo "CREATE USER '${WP_DB_ADMIN_USERNAME}'@'%' IDENTIFIED BY '${WP_DB_ADMIN_PWD}';" >> sys_db
