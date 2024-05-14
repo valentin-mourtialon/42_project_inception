@@ -1,10 +1,18 @@
 #!/bin/sh
 
+echo "[WP config] Waiting for MariaDB..."
+while ! mariadb -h"mariadb" -u${WP_DB_ADMIN_USERNAME} -p${WP_DB_ADMIN_PWD} ${WP_DB_NAME};
+do
+    sleep 3
+done
+echo "[WP config] MariaDB accessible."
+
+
 wp-cli.phar cli update --yes --allow-root
 
 wp-cli.phar core download --allow-root --path=/var/www/html/wordpress
 
-wp-cli.phar config create --dbname=${WP_DB_NAME} --dbuser=${WP_USER} --dbpass=${WP_USER_PWD} --dbhost="mariadb":"3306" --path=/var/www/html/wordpress --allow-root
+wp-cli.phar config create --dbname=${WP_DB_NAME} --dbuser=${WP_USER} --dbpass=${WP_USER_PWD} --dbhost=${WP_DB_HOST} --path=/var/www/html/wordpress --allow-root
 
 wp-cli.phar core install --url=vmourtia.42.fr/wordpress --title=wordpress --admin_user=${WP_DB_ADMIN_USERNAME} --admin_password=${WP_DB_ADMIN_PWD} --admin_email=${WP_DB_ADMIN_EMAIL} --path=/var/www/html/wordpress --allow-root
 

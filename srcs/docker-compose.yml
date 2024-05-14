@@ -43,12 +43,14 @@ networks:
 
 volumes:
   mariadb:
+    name: mariadb
     driver: local
     driver_opts:
       type: "none"
       o: "bind"
       device: /home/vmourtia/data/mariadb
   wordpress:
+    name: wordpress
     driver: local
     driver_opts:
       type: "none"

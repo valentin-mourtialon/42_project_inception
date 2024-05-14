@@ -12,6 +12,8 @@ RUN mv wp-cli.phar /usr/bin/wp-cli.phar
 
 RUN sed -i 's/listen = 127.0.0.1:9000/listen = [::]:9000/g' /etc/php81/php-fpm.d/www.conf
 
+RUN mkdir -p /var/www/html/wordpress && chown -R nobody:nobody /var/www/html
+
 COPY . src/
 
 WORKDIR src/
