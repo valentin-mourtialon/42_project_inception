@@ -18,10 +18,6 @@ COPY . src/
 
 WORKDIR src/
 
-EXPOSE 9000
-
 RUN ln -s /usr/sbin/php-fpm81 /usr/sbin/php-fpm
 
-RUN sh ./tools/setup.sh
-
-CMD ["php-fpm", "-F"]
+ENTRYPOINT ["sh", "./tools/setup.sh"]
