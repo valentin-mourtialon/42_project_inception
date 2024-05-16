@@ -9,6 +9,11 @@ services:
       - inception
     volumes:
       - mariadb:/var/lib/mysql/
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -p${MARIADB_ADMIN_PWD}"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
   wordpress:
     container_name: wordpress
@@ -21,7 +26,8 @@ services:
     volumes:
       - wordpress:/var/www/html/
     depends_on:
-      - mariadb
+      mariadb:
+        condition: service_healthy
 
   nginx:
     container_name: nginx

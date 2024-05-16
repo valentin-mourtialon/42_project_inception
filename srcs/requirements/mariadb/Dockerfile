@@ -14,6 +14,7 @@ RUN mkdir -p /var/lib/mysql /run/mysqld && chown -R mysql:mysql /var/lib/mysql /
 RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql --skip-test-db --rpm
 
 COPY ./conf/my.cnf /etc/my.cnf
+COPY ./conf/mariadb-server.cnf /etc/my.cnf.d/mariadb-server.cnf
 COPY . src/
 
 WORKDIR src/
