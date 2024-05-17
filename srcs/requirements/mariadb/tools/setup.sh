@@ -24,7 +24,6 @@ echo "FLUSH PRIVILEGES;" >> dbconfig.sql
 # initializing all its components, especially
 # those related to network and user access controls.
 /usr/bin/mysqld --user=mysql --bootstrap < dbconfig.sql
-
 rm -f dbconfig.sql
 
 # Start MariaDb daemon
